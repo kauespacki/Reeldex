@@ -23,10 +23,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/Reeldex", () =>
-
-   "api funciona"
-);
+app.MapGet("/filmes", (AppDbContext db) =>
+{
+    var filmes = db.TabelaFilmes.ToList();
+    return Results.Ok(filmes);
+});
 
 
 app.Run();
