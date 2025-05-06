@@ -32,5 +32,27 @@ app.MapGet("/filmes/{id}", async (AppDbContext db, int id) =>
     return filme is not null ? Results.Ok(filme) : Results.NotFound("Filme não encontrado.");
 });
 
+app.MapPut("/filmes/{id}", async (int id, Filme updatedFilme, AppDbContext db) =>
+{
+    var existing = await db.TabelaFilmes.FindAsync(id);
+    if (existing == null)
+        return Results.NotFound("Filme não encontrado!");
+
+    existing.Titulo = updatedFilme.Titulo;
+    existing.Ano = updatedFilme.Ano;
+    existing.Genero = updatedFilme.Genero;
+    existing.Sinopse = updatedFilme.Sinopse;
+
+    await db.SaveChangesAsync();
+    return Results.Ok(existing);
+});
+
+
+app.MapPost("/filmes", async (Filme filme, AppDbContext db) =>
+{
+    db.TabelaFilmes.Add(filme);
+    await db.SaveChangesAsync();
+    return Results.Created($"/filmes/{filme.Id}", filme);
+});
 
 app.Run();
