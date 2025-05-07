@@ -1732,19 +1732,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PEDROWU\\.nuget\\packages\\": {}
+    "/home/kaue/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
+      "projectUniqueName": "/home/kaue/Downloads/Reeldex/Reeldex.csproj",
       "projectName": "Reeldex",
-      "projectPath": "c:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
-      "packagesPath": "C:\\Users\\PEDROWU\\.nuget\\packages\\",
-      "outputPath": "c:\\xampp\\htdocs\\Reeldex\\obj\\",
+      "projectPath": "/home/kaue/Downloads/Reeldex/Reeldex.csproj",
+      "packagesPath": "/home/kaue/.nuget/packages/",
+      "outputPath": "/home/kaue/Downloads/Reeldex/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PEDROWU\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/kaue/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1815,7 +1815,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

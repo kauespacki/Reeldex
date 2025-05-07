@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Reeldex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    section {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      max-width: 600px;
+    }
+
+    section h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .put-btn {
+      background-color: #27ae60;
+    }
+
+    .put-btn:hover {
+      background-color: #1e8449;
+    }
+
+    .get-btn {
+      background-color: #8e44ad;
+    }
+
+    .get-btn:hover {
+      background-color: #6c3483;
+    }
+
+    .result {
+      background: #ecf0f1;
+      padding: 15px;
+      margin-top: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .result h3 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    .result pre {
+      background: #fff;
+      padding: 15px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎬 Reeldex</h1>
+
+  <!-- FORMULÁRIO: READ (Listar Todos) -->
+  <section>
+    <h2>📖 Listar Filmes (GET)</h2>
+    <form method="get" action="/filmes">
+      <button type="submit" class="get-btn">Listar Todos</button>
+    </form>
+  </section>
+
+  <!-- FORMULÁRIO: READ (Listar por ID) -->
+  <section>
+    <h2>🔍 Buscar Filme por ID (GET)</h2>
+    <form method="get" action="/filmes">
+      <label for="idBusca">ID do Filme:</label>
+      <input type="number" id="idBusca" name="id" required>
+
+      <button type="submit" class="get-btn">Buscar Filme</button>
+    </form>
+  </section>
+  
+  <!-- FORMULÁRIO: CREATE (Adicionar Filme) -->
+  <section>
+    <h2>➕ Adicionar Filme (POST)</h2>
+    <form method="post" action="/filmes">
+      <label for="titulo">Título:</label>
+      <input type="text" id="titulo" name="titulo" required>
+
+      <label for="ano">Ano:</label>
+      <input type="number" id="ano" name="ano" min="1960" max="1969" required>
+
+      <label for="genero">Gênero:</label>
+      <input type="text" id="genero" name="genero" required>
+
+      <label for="sinopse">Sinopse:</label>
+      <textarea id="sinopse" name="sinopse" required></textarea>
+
+      <label for="elenco">Elenco:</label>
+      <input type="text" id="elenco" name="elenco" required>
+
+      <button type="submit">Criar Filme</button>
+    </form>
+  </section>
+
+  <!-- FORMULÁRIO: UPDATE (Atualizar Filme) -->
+  <section>
+    <h2>✏️ Atualizar Filme (PUT)</h2>
+    <form method="post" action="/filmes/update">
+      <label for="idUpdate">ID do Filme:</label>
+      <input type="number" id="idUpdate" name="id" required>
+
+      <label for="tituloUpdate">Novo Título:</label>
+      <input type="text" id="tituloUpdate" name="titulo">
+
+      <label for="anoUpdate">Novo Ano:</label>
+      <input type="number" id="anoUpdate" name="ano" min="1960" max="1969">
+
+      <label for="generoUpdate">Novo Gênero:</label>
+      <input type="text" id="generoUpdate" name="genero">
+
+      <label for="sinopseUpdate">Nova Sinopse:</label>
+      <textarea id="sinopseUpdate" name="sinopse"></textarea>
+
+      <label for="elencoUpdate">Novo Elenco:</label>
+      <input type="text" id="elencoUpdate" name="elenco">
+
+      <button type="submit" class="put-btn">Atualizar Filme</button>
+    </form>
+  </section>
+
+  <!-- FORMULÁRIO: DELETE (Remover Filme) -->
+  <section>
+    <h2>🗑️ Remover Filme (DELETE)</h2>
+    <form method="post" action="/filmes/delete">
+      <label for="idDelete">ID do Filme:</label>
+      <input type="number" id="idDelete" name="id" required>
+
+      <button type="submit" class="delete-btn">Excluir Filme</button>
+    </form>
+  </section>
+
+  <!-- RESULTADO DAS OPERAÇÕES -->
+  <section class="result">
+    <h3>Resultado da Operação</h3>
+    <pre id="resultOutput"></pre>
+  </section>
+
+</body>
+</html>

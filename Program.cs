@@ -55,4 +55,15 @@ app.MapPost("/filmes", async (Filme filme, AppDbContext db) =>
     return Results.Created($"/filmes/{filme.Id}", filme);
 });
 
+app.MapDelete("/filmes/{id}", async (int id, AppDbContext db) =>
+{
+    var filme = await db.TabelaFilmes.FindAsync(id);
+    if (filme == null)
+        return Results.NotFound("Filme não encontrado!");
+    
+    db.TabelaFilmes.Remove(filme);
+    await db.SaveChangesAsync();
+    return Results.Ok("Filme deletado com sucesso!");
+});
+
 app.Run();
