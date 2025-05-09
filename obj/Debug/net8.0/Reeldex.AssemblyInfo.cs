@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reeldex")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03430d2a0530d9e0734408c69e92b90a484c1da2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84aaafe99c4a427d0a58c6cef0e6ff3c81c9b539")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reeldex")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reeldex")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

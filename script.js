@@ -1,8 +1,14 @@
 const resultOutput = document.getElementById('resultOutput');
 const idBusca = document.getElementById('idBusca');
 const idForm = document.getElementById('idForm');
+const PostForm = document.getElementById('PostForm');
+const titulo = document.getElementById('titulo');
+const ano = document.getElementById('ano');
+const genero = document.getElementById('genero');
+const sinopse = document.getElementById('sinopse');
 
 var btnGetTodos = document.getElementById("getTodos");
+
 var apiURL = "http://localhost:5073/filmes";
 
 const getTodos = async () => {
@@ -71,7 +77,31 @@ const getFilmeId = async () => {
    alert("Busca concluída"); 
 }
 
+const postFilme = async (novoFilme) => {
+    resultOutput.innerHTML = '';
+    
+    try {
+        const response = await fetch(apiURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novoFilme)
+        });
 
+        if (!response.ok) {
+            throw new Error("Erro ao adicionar Filme");
+        }
+
+        const FilmeAdicionado = await response.json();
+
+        alert(`Filme "${titulo.value}" adicionado com sucesso!`);
+    } catch (error) {
+        const newLi = document.createElement('li');
+        newLi.innerText = `${error.message}`;
+        resultOutput.appendChild(newLi);
+    }
+}
 
 btnGetTodos.addEventListener('click', (event) => {
 
@@ -79,8 +109,19 @@ btnGetTodos.addEventListener('click', (event) => {
     getTodos();
 });
 
-
 idForm.addEventListener('submit', (event) => {
     event.preventDefault();
     getFilmeId();
+});
+
+PostForm.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    const filme = {
+        titulo: `${titulo.value}`,
+        ano: `${ano.value}`,
+        genero: `${genero.value}`,
+        sinopse: `${sinopse.value}`
+    }
+    postFilme(filme);
+
 });
