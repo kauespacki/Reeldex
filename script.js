@@ -33,7 +33,7 @@ const getTodos = async () => {
         console.log(error.message);
         resultOutput.innerText = `${error.message}`;
     }
-    
+
     alert("Busca concluída"); 
     
 }
@@ -70,6 +70,8 @@ const getFilmeId = async () => {
 
    alert("Busca concluída"); 
 }
+
+
 
 btnGetTodos.addEventListener('click', (event) => {
 
