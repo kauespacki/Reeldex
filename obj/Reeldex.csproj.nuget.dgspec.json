@@ -10,11 +10,11 @@
         "projectUniqueName": "C:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
         "projectName": "Reeldex",
         "projectPath": "C:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
-        "packagesPath": "C:\\Users\\KAUEHLATKISPACKI\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\PEDROWU\\.nuget\\packages\\",
         "outputPath": "C:\\xampp\\htdocs\\Reeldex\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\KAUEHLATKISPACKI\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\PEDROWU\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

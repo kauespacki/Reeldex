@@ -12,6 +12,7 @@ const tituloUpdate = document.getElementById('tituloUpdate');
 const anoUpdate = document.getElementById('anoUpdate');
 const generoUpdate = document.getElementById('generoUpdate');
 const sinopseUpdate = document.getElementById('sinopseUpdate');
+const idDelete = document.getElementById('idDelete');
 
 var btnGetTodos = document.getElementById("getTodos");
 
@@ -132,6 +133,27 @@ const putFilme = async (idUpdate, novoFilme) => {
         resultOutput.appendChild(newLi);
     }
 }
+const deleteFilme = async () => {
+    resultOutput.innerHTML = "";
+    try {
+        const response = await fetch (`${apiURL}/${idDelete.value}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'aplication/json'
+            },
+        });
+        if(!response.ok){
+            throw new Error("Erro ao deletar o filme.");
+            
+        }
+        const FilmeAtualizado = await response.json();
+        alert(`Filme deletado com sucesso!`);
+    } catch(error){
+        const newLi = document.createElement('li');
+        newLi.innerText = `${error.message}`;
+        resultOutput.appendChild(newLi);
+    }
+}
 
 btnGetTodos.addEventListener('click', (event) => {
 
@@ -165,4 +187,9 @@ formUpdate.addEventListener('submit', (event) =>{
         sinopse: sinopseUpdate.value
     };
     putFilme(idUpdate, novoFilme);
+})
+
+formDelete.addEventListener('submit', (event) => {
+    event.preventDefault();
+    deleteFilme();
 })
