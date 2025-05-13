@@ -1732,19 +1732,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PEDROWU\\.nuget\\packages\\": {}
+    "C:\\Users\\KAUEHLATKISPACKI\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
       "projectName": "Reeldex",
-      "projectPath": "c:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
-      "packagesPath": "C:\\Users\\PEDROWU\\.nuget\\packages\\",
-      "outputPath": "c:\\xampp\\htdocs\\Reeldex\\obj\\",
+      "projectPath": "C:\\xampp\\htdocs\\Reeldex\\Reeldex.csproj",
+      "packagesPath": "C:\\Users\\KAUEHLATKISPACKI\\.nuget\\packages\\",
+      "outputPath": "C:\\xampp\\htdocs\\Reeldex\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PEDROWU\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\KAUEHLATKISPACKI\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

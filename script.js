@@ -6,6 +6,12 @@ const titulo = document.getElementById('titulo');
 const ano = document.getElementById('ano');
 const genero = document.getElementById('genero');
 const sinopse = document.getElementById('sinopse');
+const formUpdate = document.getElementById('formUpdate');
+const idUpdate = document.getElementById('idUpdate');
+const tituloUpdate = document.getElementById('tituloUpdate');
+const anoUpdate = document.getElementById('anoUpdate');
+const generoUpdate = document.getElementById('generoUpdate');
+const sinopseUpdate = document.getElementById('sinopseUpdate');
 
 var btnGetTodos = document.getElementById("getTodos");
 
@@ -103,6 +109,30 @@ const postFilme = async (novoFilme) => {
     }
 }
 
+const putFilme = async (idUpdate, novoFilme) => {
+    resultOutput.innerHTML = "";
+    try {
+        const response = await fetch(`${apiURL}/${idUpdate.value}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(novoFilme)
+        });
+
+        if(!response.ok){
+            throw new Error("Erro ao atualizar o filme.");
+        }
+
+        const FilmeAtualizado = await response.json();
+        alert(`Filme "${tituloUpdate.value}" alterado com sucesso!`);
+    } catch(error){
+        const newLi = document.createElement('li');
+        newLi.innerText = `${error.message}`;
+        resultOutput.appendChild(newLi);
+    }
+}
+
 btnGetTodos.addEventListener('click', (event) => {
 
     event.preventDefault();
@@ -125,3 +155,14 @@ PostForm.addEventListener('submit', (event) =>{
     postFilme(filme);
 
 });
+
+formUpdate.addEventListener('submit', (event) =>{
+    event.preventDefault();
+    var novoFilme = {
+        titulo: tituloUpdate.value,
+        ano: anoUpdate.value,
+        genero: generoUpdate.value,
+        sinopse: sinopseUpdate.value
+    };
+    putFilme(idUpdate, novoFilme);
+})
