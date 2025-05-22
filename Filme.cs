@@ -5,7 +5,7 @@ namespace Reeldex{
         public int Ano  { get; set; }
         public string? Genero { get; set; }
         public string? Sinopse { get; set; }
-
+        public string? Capa { get; set; }
 
     }
 }

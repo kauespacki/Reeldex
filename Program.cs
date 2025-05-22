@@ -54,6 +54,7 @@ app.MapPut("/filmes/{id}", async (int id, Filme updatedFilme, AppDbContext db) =
     existing.Ano = updatedFilme.Ano;
     existing.Genero = updatedFilme.Genero;
     existing.Sinopse = updatedFilme.Sinopse;
+    existing.Capa = updatedFilme.Capa;
 
     await db.SaveChangesAsync();
     return Results.Ok(existing);

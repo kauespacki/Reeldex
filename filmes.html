@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Reeldex - Filmes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .movies-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .movie-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .movie-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .movie-card h3 {
+      margin: 15px 0 5px;
+      color: #2c3e50;
+    }
+
+    .movie-card p {
+      color: #7f8c8d;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .movie-card .year {
+      font-weight: bold;
+      color: #3498db;
+    }
+
+    .movie-card .synopsis {
+      color: #34495e;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎬 Reeldex - Filmes</h1>
+
+  <div class="movies-container" id="moviesContainer">
+    <!-- Filmes serão carregados aqui dinamicamente -->
+  </div>
+
+  <script>
+    // Função para carregar os filmes da API
+    async function fetchMovies() {
+      try {
+        const response = await fetch('http://localhost:5073/filmes');  // Substitua pela URL da sua API
+        const filmes = await response.json();
+
+        // Container onde os filmes serão exibidos
+        const moviesContainer = document.getElementById('moviesContainer');
+
+        // Verifica se há filmes
+        if (filmes && filmes.length > 0) {
+          filmes.forEach(filme => {
+            const movieCard = document.createElement('div');
+            movieCard.classList.add('movie-card');
+
+            // Capa do filme
+            const movieImage = document.createElement('img');
+            movieImage.src = filme.capa;  // Supondo que "capa" seja o atributo da URL da capa
+            movieImage.alt = filme.titulo;
+
+            // Título do filme
+            const movieTitle = document.createElement('h3');
+            movieTitle.textContent = filme.titulo;
+
+            // Ano de lançamento
+            const movieYear = document.createElement('p');
+            movieYear.classList.add('year');
+            movieYear.textContent = `Ano: ${filme.ano}`;
+
+            // Sinopse
+            const movieSynopsis = document.createElement('p');
+            movieSynopsis.classList.add('synopsis');
+            movieSynopsis.textContent = filme.sinopse;
+
+            // Adiciona os elementos ao cartão
+            movieCard.appendChild(movieImage);
+            movieCard.appendChild(movieTitle);
+            movieCard.appendChild(movieYear);
+            movieCard.appendChild(movieSynopsis);
+
+            // Adiciona o cartão de filme ao container
+            moviesContainer.appendChild(movieCard);
+          });
+        } else {
+          moviesContainer.innerHTML = '<p>Nenhum filme encontrado.</p>';
+        }
+      } catch (error) {
+        console.error('Erro ao carregar filmes:', error);
+      }
+    }
+
+    // Carregar filmes ao carregar a página
+    window.onload = fetchMovies;
+  </script>
+
+</body>
+</html>

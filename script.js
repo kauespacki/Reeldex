@@ -6,12 +6,14 @@ const titulo = document.getElementById('titulo');
 const ano = document.getElementById('ano');
 const genero = document.getElementById('genero');
 const sinopse = document.getElementById('sinopse');
+const capa = document.getElementById('capa');
 const formUpdate = document.getElementById('formUpdate');
 const idUpdate = document.getElementById('idUpdate');
 const tituloUpdate = document.getElementById('tituloUpdate');
 const anoUpdate = document.getElementById('anoUpdate');
 const generoUpdate = document.getElementById('generoUpdate');
 const sinopseUpdate = document.getElementById('sinopseUpdate');
+const capaUpdate = document.getElementById('capaUpdate');
 const idDelete = document.getElementById('idDelete');
 
 var btnGetTodos = document.getElementById("getTodos");
@@ -37,7 +39,7 @@ const getTodos = async () => {
 
         filmes.forEach(filme => {
             const newLi = document.createElement('li');
-            newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse}`;
+            newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse} | Capa: ${filme.capa}`;
             resultOutput.appendChild(newLi);
         });
         
@@ -72,7 +74,7 @@ const getFilmeId = async () => {
 
    
         const newLi = document.createElement('li');
-        newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse}`;
+        newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse} | Capa: ${filme.capa}`;
         resultOutput.appendChild(newLi);
         
 
@@ -158,7 +160,8 @@ const deleteFilme = async () => {
 btnGetTodos.addEventListener('click', (event) => {
 
     event.preventDefault();
-    getTodos();
+    //getTodos();
+    window.location.href = "filmes.html";
 });
 
 idForm.addEventListener('submit', (event) => {
@@ -172,7 +175,8 @@ PostForm.addEventListener('submit', (event) =>{
         titulo: `${titulo.value}`,
         ano: `${ano.value}`,
         genero: `${genero.value}`,
-        sinopse: `${sinopse.value}`
+        sinopse: `${sinopse.value}`,
+        capa: `${capa.value}`
     }
     postFilme(filme);
 
@@ -184,7 +188,8 @@ formUpdate.addEventListener('submit', (event) =>{
         titulo: tituloUpdate.value,
         ano: anoUpdate.value,
         genero: generoUpdate.value,
-        sinopse: sinopseUpdate.value
+        sinopse: sinopseUpdate.value,
+        capa: capaUpdate.value
     };
     putFilme(idUpdate, novoFilme);
 })
