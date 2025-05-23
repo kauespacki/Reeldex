@@ -21,70 +21,103 @@ var btnGetTodos = document.getElementById("getTodos");
 var apiURL = "http://localhost:5073/filmes";
 
 const getTodos = async () => {
-    resultOutput.innerHTML = '';
+    const apiURL = "http://localhost:5073/filmes";
+    const moviesContainer = document.getElementById('moviesContainer');
+    moviesContainer.innerHTML = '';
 
     try {
-        const response = await fetch(apiURL, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error("Erro ao buscar os filmes.");         
+      const response = await fetch(apiURL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
+      });
 
-        const filmes = await response.json();
+      if (!response.ok) {
+        throw new Error("Erro ao buscar os filmes.");
+      }
 
-        filmes.forEach(filme => {
-            const newLi = document.createElement('li');
-            newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse} | Capa: ${filme.capa}`;
-            resultOutput.appendChild(newLi);
-        });
-        
+      const filmes = await response.json();
+
+      filmes.forEach(filme => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card');
+
+        const movieImage = document.createElement('img');
+        movieImage.src = filme.capa;
+        movieImage.alt = filme.titulo;
+
+        const movieTitle = document.createElement('h3');
+        movieTitle.textContent = filme.titulo;
+
+        const movieYear = document.createElement('p');
+        movieYear.classList.add('year');
+        movieYear.textContent = `Ano: ${filme.ano}`;
+
+        const movieSynopsis = document.createElement('p');
+        movieSynopsis.classList.add('synopsis');
+        movieSynopsis.textContent = filme.sinopse;
+
+        movieCard.appendChild(movieImage);
+        movieCard.appendChild(movieTitle);
+        movieCard.appendChild(movieYear);
+        movieCard.appendChild(movieSynopsis);
+
+        moviesContainer.appendChild(movieCard);
+      });
 
     } catch (error) {
-        console.log(error.message);
-        resultOutput.innerText = `${error.message}`;
+      console.error(error.message);
+      moviesContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
     }
+  };
 
-    alert("Busca concluída"); 
-    
-}
 
-const getFilmeId = async () => {
-    resultOutput.innerHTML = '';
-
-    var idFilme = idBusca.value;
-
+const getFilmeId = async (idFilme) => {
     try {
-        const response = await fetch(`${apiURL}/${idFilme}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar o filme de id ${idFilme}.`);         
+      const apiURL = "http://localhost:5073/filmes";
+      const response = await fetch(`${apiURL}/${idFilme}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
+      });
 
-        const filme = await response.json();
+      if (!response.ok) {
+        throw new Error(`Erro ao buscar o filme de id ${idFilme}.`);
+      }
 
-   
-        const newLi = document.createElement('li');
-        newLi.innerText = `ID: ${filme.id} | Titulo: ${filme.titulo} | Ano: ${filme.ano} | Gênero: ${filme.genero} | Sinopse: ${filme.sinopse} | Capa: ${filme.capa}`;
-        resultOutput.appendChild(newLi);
-        
+      const filme = await response.json();
+      const moviesContainer = document.getElementById('moviesContainer');
 
+      const movieCard = document.createElement('div');
+      movieCard.classList.add('movie-card');
+
+      const movieImage = document.createElement('img');
+      movieImage.src = filme.capa;
+      movieImage.alt = filme.titulo;
+
+      const movieTitle = document.createElement('h3');
+      movieTitle.textContent = filme.titulo;
+
+      const movieYear = document.createElement('p');
+      movieYear.classList.add('year');
+      movieYear.textContent = `Ano: ${filme.ano}`;
+
+      const movieSynopsis = document.createElement('p');
+      movieSynopsis.classList.add('synopsis');
+      movieSynopsis.textContent = filme.sinopse;
+
+      movieCard.appendChild(movieImage);
+      movieCard.appendChild(movieTitle);
+      movieCard.appendChild(movieYear);
+      movieCard.appendChild(movieSynopsis);
+
+      moviesContainer.appendChild(movieCard);
     } catch (error) {
-        console.log(error.message);
-        resultOutput.innerText = `${error.message}`;
+      console.error(error.message);
     }
-
-   alert("Busca concluída"); 
-}
+  };
 
 const postFilme = async (novoFilme) => {
     resultOutput.innerHTML = '';
@@ -141,7 +174,7 @@ const deleteFilme = async () => {
         const response = await fetch (`${apiURL}/${idDelete.value}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'aplication/json'
+                'Content-Type': 'application/json'
             },
         });
         if(!response.ok){
@@ -158,15 +191,13 @@ const deleteFilme = async () => {
 }
 
 btnGetTodos.addEventListener('click', (event) => {
-
     event.preventDefault();
-    //getTodos();
     window.location.href = "filmes.html";
 });
 
 idForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    getFilmeId();
+    window.location.href = "filmes.html?id=" + `${idBusca.value}`;
 });
 
 PostForm.addEventListener('submit', (event) =>{
