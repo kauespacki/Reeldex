@@ -1,4 +1,3 @@
-const resultOutput = document.getElementById('resultOutput');
 const idBusca = document.getElementById('idBusca');
 const idForm = document.getElementById('idForm');
 const PostForm = document.getElementById('PostForm');
@@ -20,108 +19,7 @@ var btnGetTodos = document.getElementById("getTodos");
 
 var apiURL = "http://localhost:5073/filmes";
 
-const getTodos = async () => {
-    const apiURL = "http://localhost:5073/filmes";
-    const moviesContainer = document.getElementById('moviesContainer');
-    moviesContainer.innerHTML = '';
-
-    try {
-      const response = await fetch(apiURL, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error("Erro ao buscar os filmes.");
-      }
-
-      const filmes = await response.json();
-
-      filmes.forEach(filme => {
-        const movieCard = document.createElement('div');
-        movieCard.classList.add('movie-card');
-
-        const movieImage = document.createElement('img');
-        movieImage.src = filme.capa;
-        movieImage.alt = filme.titulo;
-
-        const movieTitle = document.createElement('h3');
-        movieTitle.textContent = filme.titulo;
-
-        const movieYear = document.createElement('p');
-        movieYear.classList.add('year');
-        movieYear.textContent = `Ano: ${filme.ano}`;
-
-        const movieSynopsis = document.createElement('p');
-        movieSynopsis.classList.add('synopsis');
-        movieSynopsis.textContent = filme.sinopse;
-
-        movieCard.appendChild(movieImage);
-        movieCard.appendChild(movieTitle);
-        movieCard.appendChild(movieYear);
-        movieCard.appendChild(movieSynopsis);
-
-        moviesContainer.appendChild(movieCard);
-      });
-
-    } catch (error) {
-      console.error(error.message);
-      moviesContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
-    }
-  };
-
-
-const getFilmeId = async (idFilme) => {
-    try {
-      const apiURL = "http://localhost:5073/filmes";
-      const response = await fetch(`${apiURL}/${idFilme}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erro ao buscar o filme de id ${idFilme}.`);
-      }
-
-      const filme = await response.json();
-      const moviesContainer = document.getElementById('moviesContainer');
-
-      const movieCard = document.createElement('div');
-      movieCard.classList.add('movie-card');
-
-      const movieImage = document.createElement('img');
-      movieImage.src = filme.capa;
-      movieImage.alt = filme.titulo;
-
-      const movieTitle = document.createElement('h3');
-      movieTitle.textContent = filme.titulo;
-
-      const movieYear = document.createElement('p');
-      movieYear.classList.add('year');
-      movieYear.textContent = `Ano: ${filme.ano}`;
-
-      const movieSynopsis = document.createElement('p');
-      movieSynopsis.classList.add('synopsis');
-      movieSynopsis.textContent = filme.sinopse;
-
-      movieCard.appendChild(movieImage);
-      movieCard.appendChild(movieTitle);
-      movieCard.appendChild(movieYear);
-      movieCard.appendChild(movieSynopsis);
-
-      moviesContainer.appendChild(movieCard);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
-
 const postFilme = async (novoFilme) => {
-    resultOutput.innerHTML = '';
-    
     try {
         const response = await fetch(apiURL, {
             method: 'POST',
@@ -139,14 +37,10 @@ const postFilme = async (novoFilme) => {
 
         alert(`Filme "${titulo.value}" adicionado com sucesso!`);
     } catch (error) {
-        const newLi = document.createElement('li');
-        newLi.innerText = `${error.message}`;
-        resultOutput.appendChild(newLi);
     }
 }
 
 const putFilme = async (idUpdate, novoFilme) => {
-    resultOutput.innerHTML = "";
     try {
         const response = await fetch(`${apiURL}/${idUpdate.value}`, {
             method: 'PUT',
@@ -161,15 +55,11 @@ const putFilme = async (idUpdate, novoFilme) => {
         }
 
         const FilmeAtualizado = await response.json();
-        alert(`Filme "${tituloUpdate.value}" alterado com sucesso!`);
+        alert(`Filme atualizado com sucesso!`);
     } catch(error){
-        const newLi = document.createElement('li');
-        newLi.innerText = `${error.message}`;
-        resultOutput.appendChild(newLi);
     }
 }
 const deleteFilme = async () => {
-    resultOutput.innerHTML = "";
     try {
         const response = await fetch (`${apiURL}/${idDelete.value}`, {
             method: 'DELETE',
@@ -184,9 +74,6 @@ const deleteFilme = async () => {
         const FilmeAtualizado = await response.json();
         alert(`Filme deletado com sucesso!`);
     } catch(error){
-        const newLi = document.createElement('li');
-        newLi.innerText = `${error.message}`;
-        resultOutput.appendChild(newLi);
     }
 }
 

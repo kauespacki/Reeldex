@@ -2,8 +2,8 @@
 
 ## 🧾 Descrição
 
-Esta API permite cadastrar, listar, editar e remover filmes antigos, com foco nos anos 60, oferecendo um banco de dados organizado sobre filmes clássicos.
-Voltada para cinéfilos e pesquisadores, a aplicação facilita o gerenciamento de um catálogo de filmes da década de 60, incluindo informações como título, ano, gênero, sinopse e elenco. Ideal para preservar e consultar filmes dessa era cinematográfica.
+Esta API permite cadastrar, listar, editar e remover filmes antigos, oferecendo um banco de dados organizado sobre filmes clássicos.
+Voltada para cinéfilos e pesquisadores, a aplicação facilita o gerenciamento de um catálogo de filmes, incluindo informações como título, ano, gênero e sinopse. Ideal para preservar e consultar filmes dessa era cinematográfica.
 
 ---
 

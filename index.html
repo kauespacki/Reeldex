@@ -6,102 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      background-color: #2c2c2c;
+      background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23505050' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+      color: #e0e0e0;
       padding: 20px;
-      color: #333;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
     }
 
     h1 {
+      font-family: 'Georgia', Times, 'Times New Roman', serif;
       text-align: center;
-      color: #2c3e50;
+      color: #d4af37;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      font-size: 3em;
+      letter-spacing: 2px;
     }
 
     section {
-      background: #fff;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      max-width: 600px;
+      background: rgba(30, 30, 30, 0.85);
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      max-width: 650px;
+      width: 95%;
+      border: 1px solid #444;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    section:hover {
+        transform: translateY(-5px);
     }
 
     section h2 {
+      color: #c0c0c0;
       margin-top: 0;
-      color: #34495e;
+      border-bottom: 1px solid #d4af37;
+      padding-bottom: 12px;
+      margin-bottom: 25px;
+      font-size: 1.8em;
     }
 
     label {
       display: block;
-      margin-top: 10px;
+      margin-top: 18px;
       font-weight: bold;
+      color: #b0b0b0;
+      margin-bottom: 8px;
     }
 
-    input, textarea {
+    input[type="text"],
+    input[type="number"],
+    textarea {
       width: 100%;
-      padding: 8px;
+      padding: 12px;
       margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      background-color: #3a3a3a;
+      color: #e0e0e0;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #d4af37;
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        outline: none;
     }
 
     button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #3498db;
-      color: white;
+      margin-top: 25px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      font-family: 'Arial', sans-serif;
+      font-size: 1em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     button:hover {
-      background-color: #2980b9;
+      filter: brightness(1.15);
+      transform: translateY(-2px);
     }
 
-    .delete-btn {
-      background-color: #e74c3c;
-    }
-
-    .delete-btn:hover {
-      background-color: #c0392b;
-    }
-
-    .put-btn {
-      background-color: #27ae60;
-    }
-
-    .put-btn:hover {
-      background-color: #1e8449;
+    button:active {
+        transform: translateY(0);
     }
 
     .get-btn {
-      background-color: #8e44ad;
+      background-color: #6a5acd;
+      color: #fff;
     }
 
-    .get-btn:hover {
-      background-color: #6c3483;
+    #PostForm button {
+      background-color: #5f9ea0;
+      color: #fff;
     }
 
-    .result {
-      background: #ecf0f1;
-      padding: 15px;
-      margin-top: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    .put-btn {
+      background-color: #daa520;
+      color: #2c2c2c;
     }
 
-    .result h3 {
-      margin-top: 0;
-      color: #34495e;
+    .delete-btn {
+      background-color: #b22222;
+      color: #fff;
     }
 
-    .result pre {
-      background: #fff;
-      padding: 15px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      overflow-x: auto;
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+      section h2 {
+        font-size: 1.5em;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+      }
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        padding: 10px;
+        font-size: 0.95em;
+      }
     }
   </style>
 </head>
@@ -109,89 +153,78 @@
 
   <h1>🎬 Reeldex</h1>
 
-  <!-- FORMULÁRIO: READ (Listar Todos) -->
   <section>
     <h2>📖 Listar Filmes (GET)</h2>
-    <form method="get">
+    <form id="formGetTodos" method="get" action="/api/filmes">
       <button type="submit" class="get-btn" id="getTodos">Listar Todos</button>
     </form>
   </section>
 
-  <!-- FORMULÁRIO: READ (Listar por ID) -->
   <section>
     <h2>🔍 Buscar Filme por ID (GET)</h2>
-    <form id="idForm" method="get" action="/filmes">
+    <form id="idForm" method="get" action="/api/filmes">
       <label for="idBusca">ID do Filme:</label>
       <input type="number" id="idBusca" name="idBusca" required>
       <button type="submit" class="get-btn">Buscar Filme</button>
     </form>
   </section>
-  
-  <!-- FORMULÁRIO: CREATE (Adicionar Filme) -->
+
   <section>
     <h2>➕ Adicionar Filme (POST)</h2>
-    <form id="PostForm" method="get">
+    <form id="PostForm" method="post" action="/api/filmes">
       <label for="titulo">Título:</label>
       <input type="text" id="titulo" name="titulo" required>
 
       <label for="ano">Ano:</label>
-      <input type="number" id="ano" name="ano" min="1800" max="2025" required>
+      <input type="number" id="ano" name="ano" min="1800" max="2029" required>
 
       <label for="genero">Gênero:</label>
       <input type="text" id="genero" name="genero" required>
 
       <label for="sinopse">Sinopse:</label>
-      <textarea id="sinopse" name="sinopse" required></textarea>
+      <textarea id="sinopse" name="sinopse" rows="4" required></textarea>
 
-      <label for="capa">Capa:</label>
-      <textarea id="capa" name="capa" required></textarea>
+      <label for="capa">Capa (URL):</label>
+      <input type="text" id="capa" name="capa" placeholder="https://example.com/image.jpg" required>
 
       <button type="submit">Criar Filme</button>
     </form>
   </section>
 
-  <!-- FORMULÁRIO: UPDATE (Atualizar Filme) -->
   <section>
     <h2>✏️ Atualizar Filme (PUT)</h2>
-    <form method="post" action="" id="formUpdate">
-      <label for="idUpdate">ID do Filme:</label>
+    <form id="formUpdate" method="post" action="/api/filmes/atualizar">
+      <label for="idUpdate">ID do Filme para Atualizar:</label>
       <input type="number" id="idUpdate" name="id" required>
 
       <label for="tituloUpdate">Novo Título:</label>
       <input type="text" id="tituloUpdate" name="titulo">
 
       <label for="anoUpdate">Novo Ano:</label>
-      <input type="number" id="anoUpdate" name="ano" min="1800" max="2025">
+      <input type="number" id="anoUpdate" name="ano" min="1800" max="2029">
 
       <label for="generoUpdate">Novo Gênero:</label>
       <input type="text" id="generoUpdate" name="genero">
 
       <label for="sinopseUpdate">Nova Sinopse:</label>
-      <textarea id="sinopseUpdate" name="sinopse"></textarea>
-      
-      <label for="capaUpdate">Nova capa:</label>
-      <textarea id="capaUpdate" name="capa"></textarea>
+      <textarea id="sinopseUpdate" name="sinopse" rows="4"></textarea>
+
+      <label for="capaUpdate">Nova Capa (URL):</label>
+      <input type="text" id="capaUpdate" name="capa">
 
       <button type="submit" class="put-btn">Atualizar Filme</button>
     </form>
   </section>
 
-  <!-- FORMULÁRIO: DELETE (Remover Filme) -->
   <section>
     <h2>🗑️ Remover Filme (DELETE)</h2>
-    <form method="post" action="" id="formDelete">
-      <label for="idDelete">ID do Filme:</label>
+    <form id="formDelete" method="post" action="/api/filmes/remover">
+      <label for="idDelete">ID do Filme para Remover:</label>
       <input type="number" id="idDelete" name="id" required>
-
       <button type="submit" class="delete-btn">Excluir Filme</button>
     </form>
   </section>
 
-  <!-- RESULTADO DAS OPERAÇÕES -->
-  <section class="result">
-    <h3>Resultado da Operação</h3>
-    <pre id="resultOutput"></pre>
-  </section>
   <script src="script.js"></script>
 </body>
 </html>
