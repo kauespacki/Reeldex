@@ -1,0 +1,6 @@
+@Reeldex_HostAddress = http://localhost:5073
+
+GET {{Reeldex_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
